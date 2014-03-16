@@ -1,6 +1,9 @@
 language-detector-server
 ========================
 
+The purpose of this service is to provide a simple JSON webservice to the language detection java library <https://code.google.com/p/language-detection/>
+
+
 Quick-start
 -----------
 
