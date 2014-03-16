@@ -12,7 +12,8 @@ import com.cybozu.labs.langdetect.DetectorFactory
 
 
 class LangDetectorService extends Service[List[LangRequest], List[LangResponse]] {
-  LangDetectorHelper.loadProfileFromResources("profiles/")
+  val profiles = LangDetectorHelper.getJsonProfiles("profiles/")
+  DetectorFactory.loadProfile(profiles)
 
   def getLangProbabilities(text: String): List[LangProbability] = {
     val detector = DetectorFactory.create()

@@ -14,15 +14,15 @@ import org.apache.commons.io.IOUtils;
 
 public class LangDetectorHelper
 {
-    public static void loadProfileFromResources(String resourceDir) throws LangDetectException, IOException, URISyntaxException
+    public static List<String> getJsonProfiles(String resourceDir) throws LangDetectException, IOException, URISyntaxException
     {
         CodeSource src = DetectorFactory.class.getProtectionDomain().getCodeSource();
+        List<String> jsonProfiles = new ArrayList<String>();
 
         if (src != null)
         {
             URL jar = src.getLocation();
             InputStream in = null;
-            List<String> json_profiles = new ArrayList<String>();
             ZipInputStream zip = new ZipInputStream(jar.openStream());
             ZipEntry ze;
 
@@ -36,7 +36,7 @@ public class LangDetectorHelper
                         in = DetectorFactory.class.getResourceAsStream("/" + entryName);
                         if (in != null)
                         {
-                            json_profiles.add(IOUtils.toString(in, "UTF-8"));
+                            jsonProfiles.add(IOUtils.toString(in, "UTF-8"));
                         }
                     }
                     finally
@@ -48,7 +48,7 @@ public class LangDetectorHelper
                     }
                 }
             }
-            DetectorFactory.loadProfile(json_profiles);
         }
+        return jsonProfiles;
     }
 }
