@@ -19,6 +19,22 @@ There are other options available :
 
     $ java -jar target/scala-2.10/language-detector-server-assembly-0.1.0.jar -help
 
+To query the endpoint just POST a JSON query to :
+    
+    http://localhost:8080/lang-detector
+
+The JSON query format is the following :
+
+    [{"id": "request-id", "text": "Text to detect"}, ...]
+
+The JSON response format is the following :
+
+    [{"id": "request-id", result: [{"lang": "en", "prob": "0.999"},...]}, ...]
+
+Here is a request example :
+
+    curl -s -d '[{"id":"test-fr","text":"Bonjour tout le monde"}, {"id":"test-en","text":"My name is Pascal"}]' http://localhost:8080/lang-detector | python -mjson.tool
+
 The admin page is located at :
 
 <http://localhost:9990/admin>
