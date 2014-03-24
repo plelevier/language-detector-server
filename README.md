@@ -31,9 +31,9 @@ The JSON response format is the following :
 
     [{"id": "request-id", result: [{"lang": "en", "prob": "0.999"},...]}, ...]
 
-Here is a request example :
+Here is a request example using curl and python for JSON pretty formating :
 
-    curl -s -d '[{"id":"test-fr","text":"Bonjour tout le monde"}, {"id":"test-en","text":"My name is Pascal"}]' http://localhost:8080/lang-detector | python -mjson.tool
+    $ curl -s -d '[{"id":"test-fr","text":"Bonjour tout le monde"}, {"id":"test-en","text":"My name is Pascal"}]' http://localhost:8080/lang-detector | python -mjson.tool
 
 The admin page is located at :
 
